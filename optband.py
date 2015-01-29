@@ -24,21 +24,22 @@ def mainfun():
     objective=sum([rev1(i,k)for i in range(1,n-1) for k in range(1,m-1)])+sum([rev2(i) for i in range(1,n-1)])
     print sum([rev1(i,k)for i in range(1,n-1) for k in range(1,m-1)]),sum([rev2(i) for i in range(1,n-1)])
     return opt[:n],objective
+f=file('record.txt','r')
 for n in range(3,10):
     bands=[]
     objs=[]
     for m in range(5,55,5):
-        band,obj=mainfun()
-        f=file('record.txt','a')
-        f.write('%d %d %s %f\n'%(n,m,str(band),obj))
-        f.close()
+        exec 'nn,mm,band,obj='+','.join(f.readline().split()).replace('[,','[').replace (',]',']')
         bands+=[band[1:-1]]
         objs+=[obj]
-    plt.title('optimal bidding levels and corresponding revenue when n=%d'%n)
-    plt.xlabel('number of bidders')
-    plt.ylabel('revenue (red) or bidding levels (blue)')
-    plt.plot(range(5,55,5),bands,label='bidding levels',color='b')
+    plt.title('Optimal bid levels and corresponding revenue\n when n=%d'%(n-1),size=20)
+    plt.xlabel('Number of bidders',size=15)
+    plt.ylabel('Revenue or Bid levels',size=15)
+    bands=np.array(bands).T
+    for i in range(len(bands)):
+        plt.plot(range(5,55,5),bands[i],label=r'$l_%d$'%(i+1),color=(0,i*1.0/n,0))
     plt.plot(range(5,55,5),objs,label='revenue',color='r')
-    #plt.legend(loc='bottomright')
+    plt.legend(loc='lower right')
+    print n
     plt.savefig('n%d.pdf'%n)
     plt.clf()
