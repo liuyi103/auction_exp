@@ -39,7 +39,8 @@ for n in range(3,10):
     bands=np.array(bands).T
     for i in range(len(bands)):
         plt.plot(range(5,55,5),bands[i],pars[i],label=r'$l_%d$'%(i+1))
-    plt.plot(range(5,55,5),objs,label='revenue',color='r')
+    plt.plot(range(5,55,5),objs,label='revenue',color='r',lw=2)
+    plt.plot(range(5,55,5),[(i-1.0)/(i+1) for i in range(5,55,5)],label='SV',color='b',lw=2)
     plt.legend(loc='lower right')
     print n
     plt.savefig('n%d.pdf'%n)
