@@ -25,6 +25,7 @@ def mainfun():
     print sum([rev1(i,k)for i in range(1,n-1) for k in range(1,m-1)]),sum([rev2(i) for i in range(1,n-1)])
     return opt[:n],objective
 f=file('record.txt','r')
+pars=['g^-','g<-','g>-','gv-','g*-','g^:','g<:','g>:','gv:','g*:']
 for n in range(3,10):
     bands=[]
     objs=[]
@@ -32,12 +33,12 @@ for n in range(3,10):
         exec 'nn,mm,band,obj='+','.join(f.readline().split()).replace('[,','[').replace (',]',']')
         bands+=[band[1:-1]]
         objs+=[obj]
-    plt.title('Optimal bid levels and corresponding revenue\n when n=%d'%(n-1),size=20)
-    plt.xlabel('Number of bidders',size=15)
-    plt.ylabel('Revenue or Bid levels',size=15)
+    plt.title('n=%d'%(n-1),size=25)
+    plt.xlabel('Number of bidders',size=20)
+    plt.ylabel('Revenue or Bid levels',size=20)
     bands=np.array(bands).T
     for i in range(len(bands)):
-        plt.plot(range(5,55,5),bands[i],label=r'$l_%d$'%(i+1),color=(0,i*1.0/n,0))
+        plt.plot(range(5,55,5),bands[i],pars[i],label=r'$l_%d$'%(i+1))
     plt.plot(range(5,55,5),objs,label='revenue',color='r')
     plt.legend(loc='lower right')
     print n
