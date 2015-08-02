@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
-typ='e'
+typ='u'
 maps={'u':'uniform distribution','e':'exponential distribution','n':'normal distribution'}
 f=file('%s_c.txt'%typ,'r')
 s1,s2,s3=f.readlines()
