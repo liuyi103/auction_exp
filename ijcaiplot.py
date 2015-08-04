@@ -13,12 +13,14 @@ for i in ss:
     ans1[n/10-1]+=t1/20
     ans2[n/10-1]+=t2/20
     ans3[n/10-1]+=t3/20
-plt.plot(range(10,110,10)[:-1],ans1[:-1],label='ESP')
-plt.plot(range(10,110,10)[:-1],ans2[:-1],label='SV')
-plt.plot(range(10,110,10)[:-1],ans3[:-1],label='SP')
+
+plt.bar(range(7, 97, 10), ans1[ : -1], color = 'r', width = 2, label = 'extended second price')
+plt.bar(range(9, 99, 10), ans2[ : -1], color = 'b', width = 2, label = 'second value')
+plt.bar(range(11, 101, 10), ans3[ : -1], color = 'g', width = 2, label = 'second price')
+plt.xticks(range(10, 100, 10), [str(i) for i in range(10, 100, 10)])
+plt.xlim((0, 100))
 plt.xlabel('number of bidders',size=15)
 plt.ylabel('revenue',size=15)
-plt.legend(loc='lower right')
-
+plt.legend(loc='upper left')
 plt.savefig('dp.pdf',dpi=1200)
 plt.show()
