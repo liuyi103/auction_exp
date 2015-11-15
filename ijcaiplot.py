@@ -6,6 +6,7 @@ Created on Wed Feb  4 20:55:29 2015
 """
 
 import matplotlib.pyplot as plt
+import seaborn
 ss=file('ijcai.txt','r').readlines()
 ans1,ans2,ans3=[0]*10,[0]*10,[0]*10
 for i in ss:
@@ -14,11 +15,12 @@ for i in ss:
     ans2[n/10-1]+=t2/20
     ans3[n/10-1]+=t3/20
 
-plt.bar(range(7, 97, 10), ans1[ : -1], color = 'r', width = 2, label = 'extended second price')
-plt.bar(range(9, 99, 10), ans2[ : -1], color = 'b', width = 2, label = 'second value')
-plt.bar(range(11, 101, 10), ans3[ : -1], color = 'g', width = 2, label = 'second price')
+plt.plot(range(10, 100, 10), ans1[ : -1], '.-', label = 'extended second price')
+plt.plot(range(10, 100, 10), ans2[ : -1], '*-', label = 'second value')
+plt.plot(range(10, 100, 10), ans3[ : -1], '>-', label = 'second price')
 plt.xticks(range(10, 100, 10), [str(i) for i in range(10, 100, 10)])
 plt.xlim((0, 100))
+plt.ylim((0, 500))
 plt.xlabel('number of bidders',size=15)
 plt.ylabel('revenue',size=15)
 plt.legend(loc='upper left')

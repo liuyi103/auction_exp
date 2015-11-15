@@ -9,6 +9,8 @@ import numpy as np
 import bisect
 find=bisect.bisect
 n,m=100,100
+f=file('ijcai.txt','w')
+f.close()
 #n is the number of data; m is the number of bidders
 for m in range(10,110,10):
     print m
